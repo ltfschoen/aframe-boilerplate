@@ -11,7 +11,8 @@
     <span style="color: #000000; font-weight: bold; font-size: 0.7em; font-family: Arial;"><a href="https://www.flickr.com/photos/54144402@N03/17190318651/in/photolist-sc3SQk-bAqeSH-bqpT1s-bGxmAM-bqpSqU-bqpTx3-bqpRR7-bqpU5N-btCyXf-btCFkS-GED8m4-7FZW7z-bGxt2z-pSuBc7-bGxsdH-gTZdmZ-btCC8Q-btCA41-a6asHe-nPTvFX-bGxtV4-fAEQXo-pY71s9-nPUtTg-aAq7wb-b5Gwxc-ftodF-9xMeBK-fmiLdP-iu9hMy-pWMSkk-fe81Rv-b6pLQZ-nx4Dq9-8LtGrQ-nxn2L9-fPd1eW-hpQ6d8-mBAj3v-b6pTDk-GtVEve-DsCq7h-5C3Bcx-64FKCq-75BTXn-bseaz6-EdBCJs-F7LXTm-53zsD3-bnvmK3"
        style="text-decoration: none;">
       Background Credit: Bob Dass CC 2.0</a> | Models Credit: http://tf3dm.com</span>
-    <a-scene has-loaded>
+    <a-scene has-loaded
+             fog="type: exponential; near: 0.5; far: 1000; density: 0.00025; color: #000000">
     <!--<a-scene stats>-->
 
       <!-- TEXTURES -->
@@ -20,10 +21,16 @@
         <img id="woodtexture" src="./media/wood.jpg">
       </a-assets>
 
-      <a-assets>
-        <a-asset-item id="man1" src="./media/Casual_Man.obj"></a-asset-item>
-      </a-assets>
-      <a-entity collada-model="#man1"></a-entity>
+      <!-- LIGHTING -->
+
+      <!-- Red directional light shining from the top left. -->
+      <a-light color="red" position="-1 1 0"></a-light>
+      <!-- Blue point light, 5 meters in the air. -->
+      <a-light type="point" color="blue" position="0 5 0"></a-light>
+      <!-- Dim ambient lighting. -->
+      <a-light type="ambient" color="#888"></a-light>
+      <a-light type="directional" intensity="0.5" color="#666" position="-1 1 0"></a-light>
+      <a-light type="directional" intensity="3.5" color="#222" position="1 1 0"></a-light>
 
       <!-- BACKGROUND -->
 
@@ -32,21 +39,42 @@
 
       <!-- SKY 3D -->
 
-      <!--<a-assets>-->
-        <!--&lt;!&ndash; No loop. &ndash;&gt;-->
-        <!--<video id="sky-video" src="./media/paul360.mp4" autoplay="true" loop crossorigin></video>-->
-      <!--</a-assets>-->
-      <!--<a-videosphere src="#sky-video" rotation="0 180 0"></a-videosphere>-->
+      <a-assets>
+        <!-- No loop. -->
+        <video id="sky-video" src="./media/paul360.mp4" autoplay="true" loop crossorigin></video>
+      </a-assets>
+      <a-videosphere src="#sky-video" rotation="0 20 0"></a-videosphere>
 
-      <a-entity id="fading-cube" geometry="primitive: cylinder" material="opacity: 0"
-                position="1 2 -5" rotation="0 -120 0" radius="0.5" height="1.5" color="#4CC3D9">
+      <a-entity id="fading-cube" geometry="primitive: sphere" material="opacity: 0"
+                position="1 4.5 -5" rotation="0 -120 0" radius="0.5" height="1.5" color="#4CC3D9">
         <a-animation attribute="material.opacity" begin="fade" to="1"></a-animation>
       </a-entity>
 
       <!-- Props - Audience -->
-      <a-cylinder position="4 0 -5" rotation="0 -120 0" radius="0.5" height="1.5" color="#4CC3D9"></a-cylinder>
-      <a-cylinder position="-3 0 -5" rotation="0 -110 0" radius="0.5" height="1.5" color="#4CC3D9"></a-cylinder>
-      <a-cylinder position="-7 0 -7" rotation="0 -100 0" radius="0.5" height="1.5" color="#4CC3D9"></a-cylinder>
+
+      <!-- MALE 1 -->
+      <a-assets>
+        <a-light type="ambient" color="#FFF" position="1 0 -2" rotation="90 0 0" target="#camera">
+          <a-asset-item id="man1-obj" src="./media/Casual_Man.obj"></a-asset-item>
+          <a-asset-item id="man1-mtl" src="./media/Casual_Man.mtl"></a-asset-item>
+        </a-light>
+      </a-assets>
+      <a-obj-model src="#man1-obj" mtl="#man1-mtl" position="1 0 -3.5" rotation="-90 50 -90" scale="1.5 1.5 1.5">
+        <a-animation attribute="position" begin="400" dur="150" direction="alternate" repeat="indefinite" from="1 0 -3.5" to="1 0.5 -3.5"></a-animation>
+        <a-animation attribute="rotation" begin="400" dur="300" direction="normal" repeat="10" from="0 45 45" to="-120 90 45"></a-animation>
+      </a-obj-model>
+
+      <!-- FEM 1 -->
+      <a-assets>
+        <a-light type="ambient" color="#FFF" position="-1 0 -3" rotation="90 0 0" target="#camera">
+          <a-asset-item id="fem1-obj" src="./media/Casual_Girl.obj"></a-asset-item>
+          <a-asset-item id="fem1-mtl" src="./media/Casual_Girl.mtl"></a-asset-item>
+        </a-light>
+      </a-assets>
+      <a-obj-model src="#fem1-obj" mtl="#fem1-mtl" position="-2.5 -3.5 -7.5" rotation="0 -45 0" scale="1.5 1.5 1.5">
+        <a-animation attribute="position" begin="200" dur="150" direction="alternate" repeat="indefinite" from="-2.5 -3.5 -7.5" to="-2.5 -3.3 -7.5"></a-animation>
+        <a-animation attribute="rotation" begin="400" dur="300" direction="normal" repeat="10" from="0 -45 0" to="0 -30 0"></a-animation>
+      </a-obj-model>
 
       <!-- FOREGROUND -->
 

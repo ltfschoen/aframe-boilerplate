@@ -1,3 +1,7 @@
+# Notes:
+- Update package.json with the following to serve locally with LiveReload
+`"start": "budo --live --verbose --port 3000 --open",`
+
 # A-Frame Boilerplate
 
 Boilerplate for creating WebVR scenes using A-Frame.

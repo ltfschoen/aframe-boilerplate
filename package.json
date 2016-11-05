@@ -2,11 +2,17 @@
   "name": "aframe-hello-world-boilerplate",
   "description": "Boilerplate with A-Frame's 'Hello, World!' of WebVR.",
   "version": "0.3.0",
+  "author": "luke-schoen",
   "license": "MIT",
+  "main": "index.js",
   "scripts": {
-    "start": "budo --live --verbose --port 3000 --open",
+    "start": "node index.js",
     "deploy": "ghpages",
     "ghpages": "ghpages"
+  },
+  "engines": {
+    "node": "5.10.1",
+    "npm": "3.10.3"
   },
   "devDependencies": {
     "budo": "^7.0.0",
@@ -19,5 +25,8 @@
     "aframe-scene",
     "webvr",
     "vr"
-  ]
+  ],
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
