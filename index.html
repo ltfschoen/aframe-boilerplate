@@ -8,16 +8,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   <body>
-    <span><a href="https://www.flickr.com/photos/54144402@N03/17190318651/in/photolist-sc3SQk-bAqeSH-bqpT1s-bGxmAM-bqpSqU-bqpTx3-bqpRR7-bqpU5N-btCyXf-btCFkS-GED8m4-7FZW7z-bGxt2z-pSuBc7-bGxsdH-gTZdmZ-btCC8Q-btCA41-a6asHe-nPTvFX-bGxtV4-fAEQXo-pY71s9-nPUtTg-aAq7wb-b5Gwxc-ftodF-9xMeBK-fmiLdP-iu9hMy-pWMSkk-fe81Rv-b6pLQZ-nx4Dq9-8LtGrQ-nxn2L9-fPd1eW-hpQ6d8-mBAj3v-b6pTDk-GtVEve-DsCq7h-5C3Bcx-64FKCq-75BTXn-bseaz6-EdBCJs-F7LXTm-53zsD3-bnvmK3"
-       style="color: #000000; font-weight: bold; font-size: 0.7em; font-family: Arial; text-decoration: none;">
-      Background Credit: Bob Dass CC 2.0</a></span></a>
-    <a-scene>
+    <span style="color: #000000; font-weight: bold; font-size: 0.7em; font-family: Arial;"><a href="https://www.flickr.com/photos/54144402@N03/17190318651/in/photolist-sc3SQk-bAqeSH-bqpT1s-bGxmAM-bqpSqU-bqpTx3-bqpRR7-bqpU5N-btCyXf-btCFkS-GED8m4-7FZW7z-bGxt2z-pSuBc7-bGxsdH-gTZdmZ-btCC8Q-btCA41-a6asHe-nPTvFX-bGxtV4-fAEQXo-pY71s9-nPUtTg-aAq7wb-b5Gwxc-ftodF-9xMeBK-fmiLdP-iu9hMy-pWMSkk-fe81Rv-b6pLQZ-nx4Dq9-8LtGrQ-nxn2L9-fPd1eW-hpQ6d8-mBAj3v-b6pTDk-GtVEve-DsCq7h-5C3Bcx-64FKCq-75BTXn-bseaz6-EdBCJs-F7LXTm-53zsD3-bnvmK3"
+       style="text-decoration: none;">
+      Background Credit: Bob Dass CC 2.0</a> | Models Credit: http://tf3dm.com</span>
+    <a-scene has-loaded>
+    <!--<a-scene stats>-->
 
       <!-- TEXTURES -->
 
       <a-assets>
         <img id="woodtexture" src="./media/wood.jpg">
       </a-assets>
+
+      <a-assets>
+        <a-asset-item id="man1" src="./media/Casual_Man.obj"></a-asset-item>
+      </a-assets>
+      <a-entity collada-model="#man1"></a-entity>
 
       <!-- BACKGROUND -->
 
@@ -26,12 +32,11 @@
 
       <!-- SKY 3D -->
 
-      <a-assets>
-        <!-- No loop. -->
-        <video id="sky-video" src="./media/paul360.mp4" autoplay="true" loop crossorigin></video>
-      </a-assets>
-      <a-videosphere src="#my-video" rotation="0 180 0"></a-videosphere>
-      <a-entity geometry="primitive: box" material="src: #sky-video"></a-entity>
+      <!--<a-assets>-->
+        <!--&lt;!&ndash; No loop. &ndash;&gt;-->
+        <!--<video id="sky-video" src="./media/paul360.mp4" autoplay="true" loop crossorigin></video>-->
+      <!--</a-assets>-->
+      <!--<a-videosphere src="#sky-video" rotation="0 180 0"></a-videosphere>-->
 
       <a-entity id="fading-cube" geometry="primitive: cylinder" material="opacity: 0"
                 position="1 2 -5" rotation="0 -120 0" radius="0.5" height="1.5" color="#4CC3D9">
@@ -68,6 +73,7 @@
 
       <!-- Props - Conductor -->
       <a-entity geometry="primitive: cylinder" material="color: #FFC65D"
+                look-at="#camera"
                 position="4 0.75 -3" rotation="45 -90 30" radius="0.5" height="1.5">
       </a-entity>
 
@@ -78,6 +84,8 @@
       <a-box src="#woodtexture" depth="1" height="2" width="3" position="0 -0.5 -2.25"></a-box>
       <!--color="#B76705" -->
 
+      <a-entity id="camera" camera="userHeight: 1.6" look-controls></a-entity>
+
     </a-scene>
   </body>
   <script>
@@ -87,6 +95,14 @@
       setTimeout(function(){
         document.querySelector('#fading-cube').emit('fade');
       }, 5000);
+    });
+
+    // https://aframe.io/docs/0.3.0/core/scene.html#running-content-scripts-on-the-scene
+    AFRAME.registerComponent('has-loaded', {
+      init: function () {
+        var sceneEl = this.el;
+        console.log(sceneEl);
+      }
     });
   </script>
 </html>
