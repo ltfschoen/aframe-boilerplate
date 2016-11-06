@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Hello, World! - A-Frame</title>
+    <title>PerformVR - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -137,26 +137,30 @@
 
           // Toggle background
           if (currentLevelIndex == 1) {
-            loadJazz();
 
             $("#sky").remove();
             $("#scene").append("<a-sky id='sky' src='./media/gallery_high.jpg'></a-sky>");
+//            $("#scene").append("<a-sky id='sky' src='./media/people1.jpg'></a-sky>");
             $(".fem2").remove();
             $(".fem1").remove();
             $(".man1").remove();
             $(".piano").remove();
             $(".table").remove();
 
-          } else if (currentLevelIndex == 2) {
             loadJazz();
 
+          } else if (currentLevelIndex == 2) {
+
             $("#sky").remove();
-            $("#scene").append("<a-sky id='sky' src='./media/exam_high.jpg'></a-sky>");
+//            $("#scene").append("<a-sky id='sky' src='./media/exam_high.jpg'></a-sky>");
+            $("#scene").append("<a-sky id='sky' src='./media/people2_mod.jpg'></a-sky>");
             $(".fem2").remove();
             $(".fem1").remove();
             $(".man1").remove();
             $(".piano").remove();
             $(".table").remove();
+
+            loadJazz();
 
           } else {
             $(".trumpet").remove();
