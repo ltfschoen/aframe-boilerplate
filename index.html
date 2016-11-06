@@ -45,13 +45,6 @@
       <!-- https://www.flickr.com/search/?text=equirectangular&license=4%2C5%2C9%2C10 -->
       <a-sky id="sky"></a-sky>
 
-      <!-- SKY 3D -->
-
-      <!--<a-assets>-->
-        <!--<video id="sky-video" src="./media/paul360.mp4" autoplay="true" loop crossorigin></video>-->
-      <!--</a-assets>-->
-      <!--<a-videosphere src="#sky-video" rotation="0 20 0"></a-videosphere>-->
-
       <!--<a-entity id="fading-cube" geometry="primitive: sphere" material="opacity: 0"-->
                 <!--position="1 4.5 -5" rotation="0 -120 0" radius="0.5" height="1.5" color="#4CC3D9">-->
         <!--<a-animation attribute="material.opacity" begin="fade" to="1"></a-animation>-->
@@ -152,8 +145,9 @@
           } else if (currentLevelIndex == 2) {
 
             $("#sky").remove();
-//            $("#scene").append("<a-sky id='sky' src='./media/exam_high.jpg'></a-sky>");
-            $("#scene").append("<a-sky id='sky' src='./media/people2_mod.jpg'></a-sky>");
+            $("#scene").append("<a-sky id='sky' src='./media/exam_high.jpg'></a-sky>");
+//            $("#scene").append("<a-sky id='sky' src='./media/people2_mod.jpg'></a-sky>");
+
             $(".fem2").remove();
             $(".fem1").remove();
             $(".man1").remove();
@@ -163,6 +157,7 @@
             loadJazz();
 
           } else {
+            $("#sky").remove();
             $(".trumpet").remove();
 
             loadDanceHall();

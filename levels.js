@@ -1,7 +1,22 @@
 
 var loadDanceHall = function() {
     $("#sky").remove();
+
+    // MOBILE / PRODUCTION - NON-MP4 BACKGROUND (as MP4 does not load on iPhone)
+
     $("#scene").append("<a-sky id='sky' src='./media/bellagio.jpg'></a-sky>");
+
+    // DESKTOP - MP4 VIDEO BACKGROUND
+
+    // $("#scene").append(" \
+    //   <a-sky id='sky' src='./media/bellagio.jpg'></a-sky> \
+    //   <a-entity id='sky'> \
+    //     <a-assets> \
+    //       <video src='./media/paul360.mp4' autoplay='true' loop crossorigin></video> \
+    //     </a-assets> \
+    //     <a-videosphere src='#sky' rotation='0 20 0'></a-videosphere> \
+    //   </a-entity> \
+    // ");
 
     // FEMALE 2
 
